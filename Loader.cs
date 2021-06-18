@@ -262,6 +262,10 @@ namespace SongCore
                 ? new ConcurrentDictionary<string, bool>()
                 : new ConcurrentDictionary<string, bool>(Hashing.cachedSongHashData.Keys.ToDictionary(x => x, _ => false));
 
+            var customLevelsPath = Path.GetFullPath(CustomLevelPathHelper.customLevelsDirectoryPath);
+            var customWipLevelsPath = Path.Combine(CustomLevelPathHelper.baseProjectPath, "CustomWIPLevels");
+            _beatmapLevelsModel = Resources.FindObjectsOfTypeAll<BeatmapLevelsModel>().FirstOrDefault();
+
             Action job = () =>
             {
                 #region AddOfficialBeatmaps
@@ -294,8 +298,6 @@ namespace SongCore
 
                 #region AddCustomBeatmaps
 
-                var customLevelsPath = Path.GetFullPath(CustomLevelPathHelper.customLevelsDirectoryPath);
-
                 try
                 {
                     #region DirectorySetup
@@ -305,7 +307,6 @@ namespace SongCore
                         Directory.CreateDirectory(customLevelsPath);
                     }
 
-                    var customWipLevelsPath = Path.Combine(Application.dataPath, "CustomWIPLevels");
                     if (!Directory.Exists(customWipLevelsPath))
                     {
                         Directory.CreateDirectory(customWipLevelsPath);

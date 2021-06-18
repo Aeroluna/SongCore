@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace SongCore.OverrideClasses
 {
@@ -7,7 +7,6 @@ namespace SongCore.OverrideClasses
         public SongCoreCustomBeatmapLevelPack(string packID, string packName, Sprite coverImage, CustomBeatmapLevelCollection customBeatmapLevelCollection, string shortPackName = "")
             : base(packID, packName, shortPackName, coverImage, customBeatmapLevelCollection)
         {
-            coverImage = Sprite.Create(coverImage.texture, coverImage.rect, coverImage.pivot, coverImage.texture.width);
             _coverImage = coverImage;
             if (shortPackName == "")
             {
